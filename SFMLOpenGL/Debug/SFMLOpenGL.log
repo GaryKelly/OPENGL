@@ -10,5 +10,7 @@
   C:\SFML-2.5.0\bin\sfml-window-2.dll
   C:\SFML-2.5.0\bin\sfml-window-d-2.dll
   11 File(s) copied
-Debug\Game.obj : warning LNK4042: object specified more than once; extras ignored
+  Game.cpp
+c:\users\c00207281\desktop\opengl\sfmlopengl\game.cpp(189): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\c00207281\desktop\opengl\sfmlopengl\game.cpp(190): warning C4244: 'argument': conversion from 'int' to 'GLfloat', possible loss of data
   SFMLOpenGL.vcxproj -> C:\Users\C00207281\Desktop\OPENGL\Debug\SFMLOpenGL.exe

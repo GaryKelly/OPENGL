@@ -20,9 +20,10 @@ private:
 	void update();
 	void draw();
 	void unload();
-	
+	int m_drawNum;
 	//create triangle
 	GLuint VertexArray;
+	void processInputs(sf::Event &event);
 	
 
 	// // Uncomment for Part 2
