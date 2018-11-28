@@ -40,15 +40,122 @@ void Game::initialize()
 	glMatrixMode(GL_MODELVIEW);
 	isRunning = true;
 	m_drawNum = 1;
-	//// initialise triangle
-	//glBegin(GL_TRIANGLES);
-	//{
-	//	glColor3f(0.0f, 1.0f, 0.0f); 
-	//	glVertex3f(0.2, 0.0, -2.0);
-	//	glVertex3f(-2.0, -2.0, -2.0);
-	//	glVertex3f(2.0, -2.0, -2.0);
-	//}
-	//glEnd();
+	index = glGenLists(primatives);
+	//generate list of obects
+	glNewList(index, GL_COMPILE);
+	glBegin(GL_TRIANGLES);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -6.0);
+		glVertex3f(2.0, -2.0, -7.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index + 1, GL_COMPILE);
+	glBegin(GL_POINTS);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -6.0);
+		glVertex3f(2.0, -2.0, -7.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+2, GL_COMPILE);
+	glBegin(GL_LINES);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -6.0);
+		glVertex3f(2.0, -2.0, -7.0);
+		glVertex3f(-2.0, 2.0, -5.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+3, GL_COMPILE);
+	glBegin(GL_LINE_STRIP);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -6.0);
+		glVertex3f(2.0, -2.0, -7.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+4, GL_COMPILE);
+	glBegin(GL_LINE_LOOP);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -6.0);
+		glVertex3f(2.0, -2.0, -7.0);
+		glVertex3f(-2.0, 2.0, -5.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+5, GL_COMPILE);
+	glBegin(GL_TRIANGLE_STRIP);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -6.0);
+		glVertex3f(2.0, -2.0, -7.0);
+		glColor3f(100.0f, 0.0f, 0.0f);
+		glVertex3f(0.0, 1, -5.0);
+		glVertex3f(-1, -1, -7.0);
+		glVertex3f(1, -1, -6.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+6, GL_COMPILE);
+	glBegin(GL_TRIANGLE_FAN);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -7.0);
+		glVertex3f(2.0, -2.0, -6.0);
+		glColor3f(100.0f, 0.0f, 0.0f);
+		glVertex3f(0.0, 1, -7.0);
+		glVertex3f(-1, -1, -5.0);
+		glVertex3f(1, -1, -6.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+7, GL_COMPILE);
+	glBegin(GL_QUADS);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -5.5);
+		glVertex3f(2.0, -2.0, -6.0);
+		glVertex3f(2.0, 2.0, -7.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+8, GL_COMPILE);
+	glBegin(GL_QUAD_STRIP);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.5);
+		glVertex3f(-2.0, -2.0, -5.0);
+		glVertex3f(2.0, -2.0, -6.0);
+		glVertex3f(2.0, 2.0, -7.0);
+	}
+	glEnd();
+	glEndList();
+	glNewList(index+9, GL_COMPILE);
+	glBegin(GL_POLYGON);
+	{
+		glColor3f(0.0f, 100.0f, 0.0f);
+		glVertex3f(0.0, 2.0, -5.0);
+		glVertex3f(-2.0, -2.0, -6.0);
+		glVertex3f(2.0, -2.0, -7.0);
+		glVertex3f(1.0, 1.0, -5.0);
+		glVertex3f(-1, 2, -5);
+	}
+	glEnd();
+	glEndList();
 	
 }
 
@@ -76,119 +183,221 @@ void Game::draw()
 	switch (m_drawNum)
 	{
 	case 1: // Triangle 
-		glBegin(GL_TRIANGLES);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 2: // Points 
-		glBegin(GL_POINTS);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 3: // Lines
-		glBegin(GL_LINES);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-			glVertex3f(-2.0, 2.0, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 4: // Line Strip
-		glBegin(GL_LINE_STRIP);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 5: // Line Loop
-		glBegin(GL_LINE_LOOP);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-			glVertex3f(-2.0, 2.0, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 6: // Triangle Strip
-		glBegin(GL_TRIANGLE_STRIP);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-			glColor3f(100.0f, 0.0f, 0.0f);
-			glVertex3f(0.0, 1, -5.0);
-			glVertex3f(-1, -1, -5.0);
-			glVertex3f(1, -1, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 7: // Triangle Fan
-		glBegin(GL_TRIANGLE_FAN);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-			glColor3f(100.0f, 0.0f, 0.0f);
-			glVertex3f(0.0, 1, -5.0);
-			glVertex3f(-1, -1, -5.0);
-			glVertex3f(1, -1, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 8: // Quads
-		glBegin(GL_QUADS);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-			glVertex3f(2.0, 2.0, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 9: // Quad Strip
-		glBegin(GL_QUAD_STRIP);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-			glVertex3f(2.0, 2.0, -5.0);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	case 10: // Polygon
-		glBegin(GL_POLYGON);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glColor3f(0.0f, 100.0f, 0.0f);
-			glVertex3f(0.0, 2.0, -5.0);
-			glVertex3f(-2.0, -2.0, -5.0);
-			glVertex3f(2.0, -2.0, -5.0);
-			glVertex3f(1.0, 1.0, -5.0);
-			glVertex3f(-1, 2, -5);
+			glRotatef(m_roatate, 0, 0, 1);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		{
+			glTranslatef(m_translate, 0, 0);
+			glCallList(m_drawNum);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		{
+			glScalef(m_scale, m_scale, m_scale);
+			glCallList(m_drawNum);
+		}
+		else
+		{
+			glCallList(m_drawNum);
 		}
 		break;
 	default:
 		break;
 	}
-	glEnd();
+
 	//glLoadIdentity();
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
-	{
-		int rotationAngle = 3.14/45;
-		glRotatef(rotationAngle, 0, 0, 0);
-	}
+
 	glLoadIdentity();
 	cout << "Draw up" << endl;
 	window.display();
