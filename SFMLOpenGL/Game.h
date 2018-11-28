@@ -25,7 +25,7 @@ private:
 	int index;
 	double m_roatate = 90 * (3.1415 / 180);
 	double m_translate = 1.5;
-	double m_scale = 1;
+	double m_scale = 2;
 	//create triangle
 	GLuint VertexArray;
 	void processInputs(sf::Event &event);

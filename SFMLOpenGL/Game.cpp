@@ -33,6 +33,7 @@ void Game::run()
 
 void Game::initialize()
 {
+	glPointSize(10.0f);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
 	glMatrixMode(GL_PROJECTION); 
 	//glLoadIdentity(); 
@@ -68,6 +69,7 @@ void Game::initialize()
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.0);
 		glVertex3f(-2.0, -2.0, -6.0);
+		glColor3f(100.0f, 0.0f, 0.0f);
 		glVertex3f(2.0, -2.0, -7.0);
 		glVertex3f(-2.0, 2.0, -5.0);
 	}
@@ -89,6 +91,7 @@ void Game::initialize()
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.0);
 		glVertex3f(-2.0, -2.0, -6.0);
+		glColor3f(100.0f, 0.0f, 0.0f);
 		glVertex3f(2.0, -2.0, -7.0);
 		glVertex3f(-2.0, 2.0, -5.0);
 	}
@@ -167,7 +170,17 @@ void Game::update()
 	}
 	sf::Event event;
 	processInputs(event);
-
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	{
+		if (m_roatate < 180)
+		{
+			m_roatate += .5;
+		}
+	}
+	else
+	{
+		m_roatate = 0;
+	}
 	cout << "Update up" << endl;
 }
 
@@ -195,7 +208,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -216,7 +229,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -237,7 +250,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -258,7 +271,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -279,7 +292,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -300,7 +313,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -321,7 +334,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -342,7 +355,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -363,7 +376,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
@@ -384,7 +397,7 @@ void Game::draw()
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 		{
-			glScalef(m_scale, m_scale, m_scale);
+			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
 		}
 		else
