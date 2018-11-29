@@ -141,8 +141,11 @@ void Game::initialize()
 	{
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.5);
+		glColor3f(0.0f, 100.0f, 100.0f);
 		glVertex3f(-2.0, -2.0, -5.0);
+		glColor3f(100.0f, 0.0f, 0.0f);
 		glVertex3f(2.0, -2.0, -6.0);
+		glColor3f(100.0f, 100.0f, 0.0f); 
 		glVertex3f(2.0, 2.0, -7.0);
 	}
 	glEnd();
@@ -159,6 +162,7 @@ void Game::initialize()
 	}
 	glEnd();
 	glEndList();
+	glFinish();
 	
 }
 
@@ -172,9 +176,13 @@ void Game::update()
 	processInputs(event);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 	{
-		if (m_roatate < 180)
+		if (m_roatate < 360)
 		{
 			m_roatate += .5;
+		}
+		else
+		{
+			m_roatate = 0;
 		}
 	}
 	else
