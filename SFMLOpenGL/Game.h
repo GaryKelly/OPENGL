@@ -20,11 +20,11 @@ private:
 	void update();
 	void draw();
 	void unload();
-	int m_drawNum;
+	int m_drawNum; // to hold current shape active/ to be drawn
 	const int primatives = 1;
 	int index;
-	double m_roatate = 90 * (3.1415 / 180);
-	double m_translate = 1.5;
+	double m_rotate = 90 * (3.1415 / 180);
+	double m_translate = 1.5; // translate by
 	double m_scale = 2;
 	//create triangle
 	GLuint VertexArray;

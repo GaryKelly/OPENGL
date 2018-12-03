@@ -15,7 +15,7 @@ void Game::run()
 
 	while (isRunning) {
 
-		cout << "Game running..." << endl;
+		
 
 		while (window.pollEvent(event))
 		{
@@ -33,6 +33,22 @@ void Game::run()
 
 void Game::initialize()
 {
+	cout << "1: Triangle\n";
+	cout << "2: Points\n";
+	cout << "3: Lines\n";
+	cout << "4: Line Strip\n";
+	cout << "5: Line Loop\n";
+	cout << "6: triangle strip\n";
+	cout << "7: triangle fan\n";
+	cout << "8: Quad\n";
+	cout << "9: Quad Strip\n";
+	cout << "0: Polygon\n";
+	cout << "---------------------------\n";
+	cout << "R: Rotate\n";
+	cout << "S: Scale\n";
+	cout << "T: Translate\n";
+	cout << "---------------------------\n";
+
 	glPointSize(10.0f);
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f); 
 	glMatrixMode(GL_PROJECTION); 
@@ -48,7 +64,9 @@ void Game::initialize()
 	{
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.0);
+		glColor3f(1.0f, 0, 0);
 		glVertex3f(-2.0, -2.0, -6.0);
+		glColor3f(0, 0, 1.0f);
 		glVertex3f(2.0, -2.0, -7.0);
 	}
 	glEnd();
@@ -58,7 +76,9 @@ void Game::initialize()
 	{
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.0);
+		glColor3f(1.0f, 1.0f, 0.0f);
 		glVertex3f(-2.0, -2.0, -6.0);
+		glColor3f(0.0f, 1.0f, 1.0f);
 		glVertex3f(2.0, -2.0, -7.0);
 	}
 	glEnd();
@@ -80,7 +100,9 @@ void Game::initialize()
 	{
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.0);
+		glColor3f(0, 1, 1);
 		glVertex3f(-2.0, -2.0, -6.0);
+		glColor3f(1, 1, 0);
 		glVertex3f(2.0, -2.0, -7.0);
 	}
 	glEnd();
@@ -131,6 +153,7 @@ void Game::initialize()
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.0);
 		glVertex3f(-2.0, -2.0, -5.5);
+		glColor3f(1, 0, 1);
 		glVertex3f(2.0, -2.0, -6.0);
 		glVertex3f(2.0, 2.0, -7.0);
 	}
@@ -156,8 +179,10 @@ void Game::initialize()
 		glColor3f(0.0f, 100.0f, 0.0f);
 		glVertex3f(0.0, 2.0, -5.0);
 		glVertex3f(-2.0, -2.0, -6.0);
+		glColor3f(1.0f, 0, 0);
 		glVertex3f(2.0, -2.0, -7.0);
 		glVertex3f(1.0, 1.0, -5.0);
+		glColor3f(0, 0, 1);
 		glVertex3f(-1, 2, -5);
 	}
 	glEnd();
@@ -176,20 +201,20 @@ void Game::update()
 	processInputs(event);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 	{
-		if (m_roatate < 360)
+		if (m_rotate < 360)
 		{
-			m_roatate += .5;
+			m_rotate += .05;
 		}
 		else
 		{
-			m_roatate = 0;
+			m_rotate = 0;
 		}
 	}
 	else
 	{
-		m_roatate = 0;
+		m_rotate = 0;
 	}
-	cout << "Update up" << endl;
+
 }
 
 void Game::draw()
@@ -204,17 +229,17 @@ void Game::draw()
 	switch (m_drawNum)
 	{
 	case 1: // Triangle 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R)) // rotate 
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T)) // translate
 		{
 			glTranslatef(m_translate, 0, 0);
 			glCallList(m_drawNum);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) //scale
 		{
 			glScalef(1.5, m_scale, 1.5);
 			glCallList(m_drawNum);
@@ -227,7 +252,7 @@ void Game::draw()
 	case 2: // Points 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -248,7 +273,7 @@ void Game::draw()
 	case 3: // Lines
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -269,7 +294,7 @@ void Game::draw()
 	case 4: // Line Strip
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -290,7 +315,7 @@ void Game::draw()
 	case 5: // Line Loop
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -311,7 +336,7 @@ void Game::draw()
 	case 6: // Triangle Strip
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -332,7 +357,7 @@ void Game::draw()
 	case 7: // Triangle Fan
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -353,7 +378,7 @@ void Game::draw()
 	case 8: // Quads
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -374,7 +399,7 @@ void Game::draw()
 	case 9: // Quad Strip
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -395,7 +420,7 @@ void Game::draw()
 	case 10: // Polygon
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
 		{
-			glRotatef(m_roatate, 0, 0, 1);
+			glRotatef(m_rotate, 0, 0, 1);
 			glCallList(m_drawNum);
 		}
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
@@ -420,13 +445,13 @@ void Game::draw()
 	//glLoadIdentity();
 
 	glLoadIdentity();
-	cout << "Draw up" << endl;
+	
 	window.display();
 }
 
 void Game::unload()
 {
-	cout << "Cleaning up" << endl;
+
 }
 
 void Game::processInputs(sf::Event & event)

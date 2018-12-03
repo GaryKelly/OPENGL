@@ -61,7 +61,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>sfml-graphics-d.lib;sfml-audio-d.lib;sfml-system-d.lib;sfml-window-d.lib;sfml-network-d.lib;OpenGL32.lib;GLU32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$SFML_SDK\lib; $OPENDL_SDK\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$SFML_SDK\lib; $OPENGL_SDK\lib</AdditionalLibraryDirectories>
     </Link>
     <PreBuildEvent>
       <Command>xcopy $(SFML_SDK)\bin $(TargetDir) /C /Y</Command>
@@ -84,7 +84,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$SFML_SDK\lib; $OPENDL_SDK\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$SFML_SDK\lib; $OPENGL_SDK\lib</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
